@@ -1,6 +1,8 @@
 ﻿using Seriazialation;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace HW_Serializiation
 {
@@ -41,6 +43,13 @@ namespace HW_Serializiation
           Year = 2000,
         },
       };
+
+      var serializier = new BinaryFormatter();
+
+      using (var stream = File.OpenWrite("Book.bin"))
+      {
+        serializier.Serialize(stream, books);
+      }
     }
   }
 }

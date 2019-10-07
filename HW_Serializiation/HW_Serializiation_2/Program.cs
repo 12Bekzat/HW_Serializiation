@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace HW_Serializiation_1
+namespace HW_Serializiation_2
 {
   class Program
   {
@@ -46,9 +46,16 @@ namespace HW_Serializiation_1
 
       var serializier = new BinaryFormatter();
 
-      using (var stream = File.OpenWrite("Book.bin"))
+      using (var streamWriter = File.OpenWrite("Book.bin"))
       {
-        serializier.Serialize(stream, books);
+        serializier.Serialize(streamWriter, books);
+      }
+
+      List<Book> bookTest = new List<Book>();
+      using (var streamReader = File.OpenRead("Book.bin"))
+      {
+        var result = serializier.Deserialize(streamReader);
+        
       }
     }
   }
